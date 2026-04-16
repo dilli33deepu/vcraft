@@ -721,54 +721,58 @@ footer{background:#0f0f1a;padding:72px 0 0}
       <div class="popup-title">Get Your <em>Free Estimate</em></div>
     </div>
     <div class="popup-body">
-      <div class="pf-row">
-        <div class="pf-group">
-          <label>Your Name *</label>
-          <input type="text" id="p-name" placeholder="Rahul Sharma">
+      <form id="popupForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="submitPopup(event)">
+        <input type="hidden" name="access_key" value="c1333998-d3d7-43c4-93de-5db642d7070e">
+        <input type="hidden" name="subject" value="Free Estimate Enquiry">
+        <div class="pf-row">
+          <div class="pf-group">
+            <label>Your Name *</label>
+            <input type="text" id="p-name" name="name" placeholder="Rahul Sharma" required>
+          </div>
+          <div class="pf-group">
+            <label>Mobile Number *</label>
+            <input type="tel" id="p-phone" name="phone" placeholder="+91 98000 00000" required>
+          </div>
         </div>
         <div class="pf-group">
-          <label>Mobile Number *</label>
-          <input type="tel" id="p-phone" placeholder="+91 98000 00000">
+          <label>Email Address</label>
+          <input type="email" id="p-email" name="email" placeholder="you@example.com">
         </div>
-      </div>
-      <div class="pf-group">
-        <label>Email Address</label>
-        <input type="email" id="p-email" placeholder="you@example.com">
-      </div>
-      <div class="pf-row">
+        <div class="pf-row">
+          <div class="pf-group">
+            <label>Project Type</label>
+            <select id="p-type" name="project_type">
+              <option value="" disabled selected>Select service</option>
+              <option>Full Home Interior</option>
+              <option>Modular Kitchen</option>
+              <option>Bedroom & Wardrobes</option>
+              <option>Living Room</option>
+              <option>Commercial Space</option>
+              <option>Turnkey Project</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="pf-group">
+            <label>Approximate Budget</label>
+            <select id="p-budget" name="approximate_budget">
+              <option value="" disabled selected>Select range</option>
+              <option>Under ₹5 Lakhs</option>
+              <option>₹5 – 10 Lakhs</option>
+              <option>₹10 – 20 Lakhs</option>
+              <option>₹20 – 40 Lakhs</option>
+              <option>Above ₹40 Lakhs</option>
+            </select>
+          </div>
+        </div>
         <div class="pf-group">
-          <label>Project Type</label>
-          <select id="p-type">
-            <option value="" disabled selected>Select service</option>
-            <option>Full Home Interior</option>
-            <option>Modular Kitchen</option>
-            <option>Bedroom & Wardrobes</option>
-            <option>Living Room</option>
-            <option>Commercial Space</option>
-            <option>Turnkey Project</option>
-            <option>Other</option>
-          </select>
+          <label>Tell Us More (Optional)</label>
+          <textarea id="p-msg" name="message" placeholder="Share any details about your space, location, timeline…"></textarea>
         </div>
-        <div class="pf-group">
-          <label>Approximate Budget</label>
-          <select id="p-budget">
-            <option value="" disabled selected>Select range</option>
-            <option>Under ₹5 Lakhs</option>
-            <option>₹5 – 10 Lakhs</option>
-            <option>₹10 – 20 Lakhs</option>
-            <option>₹20 – 40 Lakhs</option>
-            <option>Above ₹40 Lakhs</option>
-          </select>
-        </div>
-      </div>
-      <div class="pf-group">
-        <label>Tell Us More (Optional)</label>
-        <textarea id="p-msg" placeholder="Share any details about your space, location, timeline…"></textarea>
-      </div>
-      <button class="popup-submit" onclick="submitPopup()">
-        Submit Enquiry
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+        <button type="submit" class="popup-submit">
+          Submit Enquiry
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
     </div>
   </div>
 </div>
@@ -785,49 +789,54 @@ footer{background:#0f0f1a;padding:72px 0 0}
       <div class="popup-title">Write a <em>Review</em></div>
     </div>
     <div class="popup-body">
-      <!-- Star rating selector -->
-      <div class="pf-group">
-        <label>Your Rating *</label>
-        <div class="star-selector" id="starSelector">
-          <span class="star-btn" data-val="1" onclick="setRating(1)">★</span>
-          <span class="star-btn" data-val="2" onclick="setRating(2)">★</span>
-          <span class="star-btn" data-val="3" onclick="setRating(3)">★</span>
-          <span class="star-btn" data-val="4" onclick="setRating(4)">★</span>
-          <span class="star-btn" data-val="5" onclick="setRating(5)">★</span>
-        </div>
-        <span id="ratingLabel" style="font-size:11px;color:var(--mid);margin-top:6px;display:block"></span>
-      </div>
-      <div class="pf-row">
+      <form id="reviewForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="submitReview(event)">
+        <input type="hidden" name="access_key" value="c1333998-d3d7-43c4-93de-5db642d7070e">
+        <input type="hidden" name="subject" value="Client Review Submission">
+        <input type="hidden" id="r-rating" name="rating" value="0">
+        <!-- Star rating selector -->
         <div class="pf-group">
-          <label>Your Name *</label>
-          <input type="text" id="r-name" placeholder="Rahul & Priya">
+          <label>Your Rating *</label>
+          <div class="star-selector" id="starSelector">
+            <span class="star-btn" data-val="1" onclick="setRating(1)">★</span>
+            <span class="star-btn" data-val="2" onclick="setRating(2)">★</span>
+            <span class="star-btn" data-val="3" onclick="setRating(3)">★</span>
+            <span class="star-btn" data-val="4" onclick="setRating(4)">★</span>
+            <span class="star-btn" data-val="5" onclick="setRating(5)">★</span>
+          </div>
+          <span id="ratingLabel" style="font-size:11px;color:var(--mid);margin-top:6px;display:block"></span>
+        </div>
+        <div class="pf-row">
+          <div class="pf-group">
+            <label>Your Name *</label>
+            <input type="text" id="r-name" name="name" placeholder="Rahul & Priya" required>
+          </div>
+          <div class="pf-group">
+            <label>Project Type</label>
+            <select id="r-type" name="project_type">
+              <option value="" disabled selected>Select</option>
+              <option>Full Home Interior</option>
+              <option>Modular Kitchen</option>
+              <option>Bedroom & Wardrobes</option>
+              <option>Living Room</option>
+              <option>Commercial Space</option>
+              <option>Turnkey Project</option>
+              <option>Other</option>
+            </select>
+          </div>
         </div>
         <div class="pf-group">
-          <label>Project Type</label>
-          <select id="r-type">
-            <option value="" disabled selected>Select</option>
-            <option>Full Home Interior</option>
-            <option>Modular Kitchen</option>
-            <option>Bedroom & Wardrobes</option>
-            <option>Living Room</option>
-            <option>Commercial Space</option>
-            <option>Turnkey Project</option>
-            <option>Other</option>
-          </select>
+          <label>Location (optional)</label>
+          <input type="text" id="r-loc" name="location" placeholder="e.g. Koramangala, Bangalore">
         </div>
-      </div>
-      <div class="pf-group">
-        <label>Location (optional)</label>
-        <input type="text" id="r-loc" placeholder="e.g. Koramangala, Bangalore">
-      </div>
-      <div class="pf-group">
-        <label>Your Review *</label>
-        <textarea id="r-msg" style="height:90px" placeholder="Tell others about your experience with Vcraft Interiors…"></textarea>
-      </div>
-      <button class="popup-submit" onclick="submitReview()">
-        Post Review
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+        <div class="pf-group">
+          <label>Your Review *</label>
+          <textarea id="r-msg" name="message" style="height:90px" placeholder="Tell others about your experience with Vcraft Interiors…" required></textarea>
+        </div>
+        <button type="submit" class="popup-submit">
+          Post Review
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
     </div>
   </div>
 </div>
@@ -880,19 +889,15 @@ function closePopup() {
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('popupOverlay')) closePopup();
 }
-function submitPopup() {
+function submitPopup(event) {
   const name  = document.getElementById('p-name').value.trim();
   const phone = document.getElementById('p-phone').value.trim();
   if (!name || !phone) {
     alert('Please enter your name and mobile number.');
-    return;
+    event.preventDefault();
+    return false;
   }
-  closePopup();
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4000);
-  document.querySelectorAll('#popupBox input, #popupBox select, #popupBox textarea')
-    .forEach(el => el.value = '');
+  return true;
 }
 
 /* ── SCROLL REVEAL ── */
@@ -949,6 +954,8 @@ renderReviews();
 
 function setRating(val) {
   selectedRating = val;
+  const hiddenRating = document.getElementById('r-rating');
+  if (hiddenRating) hiddenRating.value = val;
   document.querySelectorAll('.star-btn').forEach(function(s, i) {
     s.classList.toggle('active', i < val);
   });
@@ -979,33 +986,14 @@ function handleReviewOverlay(e) {
   if (e.target === document.getElementById('reviewOverlay')) closeReviewPopup();
 }
 
-function submitReview() {
+function submitReview(event) {
   const name = document.getElementById('r-name').value.trim();
   const msg  = document.getElementById('r-msg').value.trim();
-  if (!name) { alert('Please enter your name.'); return; }
-  if (!selectedRating) { alert('Please select a star rating.'); return; }
-  if (!msg) { alert('Please write your review.'); return; }
-  const type = document.getElementById('r-type').value || 'Interior Project';
-  const loc  = document.getElementById('r-loc').value.trim();
-  const proj = loc ? type + ' · ' + loc : type;
-  reviews.unshift({ name: name, rating: selectedRating, text: msg, project: proj });
-  localStorage.setItem('vcraftReviews', JSON.stringify(reviews));
-  renderReviews();
-  closeReviewPopup();
-  selectedRating = 0;
-  document.querySelectorAll('.star-btn').forEach(function(s) { s.classList.remove('active','hover'); });
-  const lbl = document.getElementById('ratingLabel');
-  if (lbl) lbl.textContent = '';
-  document.querySelectorAll('#reviewBox input, #reviewBox select, #reviewBox textarea')
-    .forEach(function(el) { el.value = ''; });
-  const t = document.getElementById('toast');
-  t.textContent = '\u2713 Thank you! Your review has been posted.';
-  t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 4000);
-  setTimeout(function() {
-    const grid = document.getElementById('reviewsGrid');
-    if (grid) grid.scrollIntoView({ behavior:'smooth', block:'center' });
-  }, 300);
+  if (!name) { alert('Please enter your name.'); event.preventDefault(); return false; }
+  if (!selectedRating) { alert('Please select a star rating.'); event.preventDefault(); return false; }
+  if (!msg) { alert('Please write your review.'); event.preventDefault(); return false; }
+  document.getElementById('r-rating').value = selectedRating;
+  return true;
 }
 
 /* ── AUTO POPUP ── */
